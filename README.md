@@ -1,45 +1,52 @@
-# NestJS_Chat
->NestJS 게이트웨이를 활용한 채팅 서버 구현 😄
+# 요구사항
 
-닉네임과 방에 대한 코드를 입력하여 같은 방에 있는 이용자끼리 실시간 채팅을 할 수 있습니다!
+back
+1. create room entity (id, password)
+2. create room controller (create room, delete room, update room (password 변경), room list 조회)
+3. create room service
 
-## 사용한 것
-Node.js, TypeScript, NestJS, WebSocket 
+front
+1. create or delete room
+2. room list
+3. chat
 
-## 구현 화면
-![스크린샷 2021-04-16 오후 10 50 47](https://user-images.githubusercontent.com/58046372/115034843-e83f1300-9f06-11eb-9387-1db6b0d2791f.png)
+# Room CRUD (07.07)
 
-## 주요 코드
+### 로직 설명
+1. all
+    * /room  
+      현재 저장되어있는 roomList를 조회.
+2. create
+    * /room  
+    data = {"password":"1234"}  
+      비밀번호가 1234인 room 생성
+3. update
+    * /room/id  
+    Param = id  
+      Body = password  
+      id가 동일한 room의 password 변경
+4. delete
+    * /room/id  
+    Param = id  
+      id와 같은 room 삭제
+### 파일 설명
+1. room.module.ts
+    * @Module
+        * 모듈부 등록
+    * imports: [TypeOrmModule.forFeature([Room])]
+        * TypeOrmModule을 이용하여 db의 Room에 접근한다.
+    * controllers: [RoomController]
+        * room.controller로부터 controller를 가져온다.
+    * providers: [RoomService]
+        * Service를 Nest Core에 등록. [[NestJS] Providers 개념 및 실습](https://medium.com/crocusenergy/nestjs-providers-%EA%B0%9C%EB%85%90-%EB%B0%8F-%EC%8B%A4%EC%8A%B5-e811bccb809a)
+    
+2. room.entity.ts
+    * @PrimaryGeneratedColumn
+        * index를 자동 생성해줌.
 
-**게이트웨이**
-- 포트번호를 81로 설정하고 네임스페이스를 chat으로 설정합니다.
-```ts
-@WebSocketGateway(81, { namespace: 'chat' })
-export class ChatGateway {
-...
-```
+3. room.service.ts
+    * @Injectable()
+        * DI을 가능하게 해주어 Controller에서 Sevice를 사용 가능하게 함.
 
-
-**socket.io의 broadcast를 websocket으로 구현**
-- socket.io의 broadcast(자신을 제외한 사용자에게 이벤트 전송)을 구현한 코드입니다. 
-```ts
-private broadcast(event, client, message: any) {
-    for (let c of this.wsClients) {
-      if (client.id == c.id)
-        continue;
-      c.emit(event, message);
-    }
-  }
-```
-
-**사용자에게 메세지 전송**
-- ``send``를 감지했을 때 다른 사용자에게 메세지를 전송합니다.
-```ts
-  @SubscribeMessage('send')
-  sendMessage(@MessageBody() data: string, @ConnectedSocket() client) {
-    const [room, nickname, message] = data;
-    console.log(`${client.id} : ${data}`);
-    this.broadcast(room, client, [nickname, message]);
-  }
-}
-```
+4. room.controller.ts
+    * 외부로부터 요청을 받아 해당하는 Method에 의해 Sevice의 로직을 실행하고 결과를 리턴.
