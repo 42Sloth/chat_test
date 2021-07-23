@@ -23,7 +23,11 @@ const App = () => {
     <BrowserRouter>
       <GlobalNavBar isMobile={isMobile} isTablet={isTablet} isDesktop={isDesktop} />
       <Switch>
-        <Route path="/" exact render={() => <Home isMobile={isMobile} isTablet={isTablet} isDesktop={isDesktop} />} />
+        <Route
+          path="/"
+          exact={true}
+          render={() => <Home isMobile={isMobile} isTablet={isTablet} isDesktop={isDesktop} />}
+        />
         <Route
           path="/game"
           exact

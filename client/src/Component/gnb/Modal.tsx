@@ -5,6 +5,7 @@ import CloseIcon from '@material-ui/icons/Close';
 interface Mo {
   closeModal: any;
   login: boolean;
+  handleLogin: any;
   handleLogout: any;
 }
 
@@ -95,7 +96,7 @@ const ATag = styled.ul`
   cursor: pointer;
 `;
 
-const Modal = ({ closeModal, login, handleLogout }: Mo) => {
+const Modal = ({ closeModal, login, handleLogin, handleLogout }: Mo) => {
   const clickLogout = () => {
     closeModal();
     handleLogout();
@@ -140,6 +141,7 @@ const Modal = ({ closeModal, login, handleLogout }: Mo) => {
                     background: 'none',
                     boxSizing: 'border-box',
                   }}
+                  onClick={handleLogin}
                 >
                   로그인
                 </button>

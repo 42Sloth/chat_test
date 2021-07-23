@@ -69,20 +69,20 @@ const ATag = styled.a`
 
 interface T {
   searchHover: boolean;
-  setSearchHover: any;
+  setSearchHover: React.Dispatch<React.SetStateAction<boolean>>;
   isMobile: boolean;
   isTablet: boolean;
 }
 
 const BarList = ({ searchHover, setSearchHover, isMobile, isTablet }: T) => {
-  const showMenu = () => {
-    !isMobile && setSearchHover(true);
-  };
-  const leaveMenu = () => {
-    if (searchHover === true) {
-      setSearchHover(false);
-    }
-  };
+  //   const showMenu = () => {
+  //     !isMobile && setSearchHover(true);
+  //   };
+  //   const leaveMenu = () => {
+  //     if (searchHover === true) {
+  //       setSearchHover(false);
+  //     }
+  //   };
 
   return (
     <Ul>
@@ -92,14 +92,10 @@ const BarList = ({ searchHover, setSearchHover, isMobile, isTablet }: T) => {
         </List>
       )}
       <List>
-        <ATag href="/game" onMouseEnter={leaveMenu}>
-          Game
-        </ATag>
+        <ATag href="/game">Game</ATag>
       </List>
       <List>
-        <ATag href="/chat" onMouseEnter={leaveMenu}>
-          Chatting
-        </ATag>
+        <ATag href="/chat">Chatting</ATag>
       </List>
     </Ul>
   );

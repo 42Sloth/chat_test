@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 interface Ti {
   isMobile: boolean;
-  handleLogin: any;
+  handleLogin: () => void;
 }
 
 const Container = styled.div`
@@ -32,6 +32,19 @@ const Logo = styled.span`
   color: #333;
 `;
 
+const SignupButton = styled.button`
+  border: none;
+  background-color: transparent;
+  padding: 0 10px;
+  margin-right: 6px;
+  height: 100;
+  font-size: 14px;
+  color: #333;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+`;
+
 const Title = ({ isMobile, handleLogin }: Ti) => {
   return (
     <Container>
@@ -40,22 +53,7 @@ const Title = ({ isMobile, handleLogin }: Ti) => {
       </a>
       {isMobile && (
         <a href="/">
-          <button
-            className="tablet"
-            style={{
-              color: '#36f',
-              fontSize: '14px',
-              height: '34px',
-              border: '1px solid #36f',
-              borderRadius: '17px',
-              padding: '0 14px',
-              background: 'none',
-              cursor: 'pointer',
-            }}
-            onClick={handleLogin}
-          >
-            회원가입하기
-          </button>
+          <SignupButton onClick={handleLogin}>login</SignupButton>
         </a>
       )}
     </Container>

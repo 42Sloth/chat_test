@@ -4,7 +4,7 @@ import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
 interface Me {
   searchHover: boolean;
-  setSearchHover: any;
+  setSearchHover: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 interface Pre {

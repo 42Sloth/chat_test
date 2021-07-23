@@ -16,6 +16,7 @@ interface Des {
 }
 
 const Header = styled.div`
+  background-color: #fff;
   position: fixed;
   padding-right: initial;
   width: 100%;

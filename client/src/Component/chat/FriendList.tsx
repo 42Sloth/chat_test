@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const List = styled.div`
   background-color: #198013;
   right: 0;
-  width: 200px;
+  width: 150px;
   height: 100%;
   position: fixed;
 `;

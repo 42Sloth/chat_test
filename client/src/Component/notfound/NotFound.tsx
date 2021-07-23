@@ -16,7 +16,7 @@ const Form = styled.div`
 const NotFound = () => {
   return (
     <Form>
-      <div>홈</div>
+      <div>NotFound</div>
     </Form>
   );
 };

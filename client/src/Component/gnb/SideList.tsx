@@ -51,8 +51,8 @@ const SignupButton = styled.button`
 interface SL {
   isMobile: boolean;
   login: boolean;
-  handleLogin: any;
-  handleLogout: any;
+  handleLogin: () => void;
+  handleLogout: () => void;
 }
 
 const SideList = ({ isMobile, login, handleLogin, handleLogout }: SL) => {
@@ -97,6 +97,7 @@ const SideList = ({ isMobile, login, handleLogin, handleLogout }: SL) => {
                 fontSize: '14px',
                 width: '32px',
               }}
+              onClick={handleLogout}
             />
           </List>
         )}
@@ -118,7 +119,9 @@ const SideList = ({ isMobile, login, handleLogin, handleLogout }: SL) => {
           </List>
         )}
       </Ul>
-      {modalOpen && <Modal closeModal={closeModal} login={login} handleLogout={handleLogout} />}
+      {modalOpen && (
+        <Modal closeModal={closeModal} login={login} handleLogin={handleLogin} handleLogout={handleLogout} />
+      )}
     </div>
   );
 };
