@@ -1,6 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
+interface T {
+  searchHover: boolean;
+  setSearchHover: React.Dispatch<React.SetStateAction<boolean>>;
+  isMobile: boolean;
+  isTablet: boolean;
+}
+
 const Ul = styled.ul`
   box-sizing: border-box;
   margin: 0;
@@ -66,13 +73,6 @@ const ATag = styled.a`
     line-height: 20px;
   } */
 `;
-
-interface T {
-  searchHover: boolean;
-  setSearchHover: React.Dispatch<React.SetStateAction<boolean>>;
-  isMobile: boolean;
-  isTablet: boolean;
-}
 
 const BarList = ({ searchHover, setSearchHover, isMobile, isTablet }: T) => {
   //   const showMenu = () => {

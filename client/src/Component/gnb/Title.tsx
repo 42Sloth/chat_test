@@ -51,11 +51,11 @@ const Title = ({ isMobile, handleLogin }: Ti) => {
       <a href="/" style={{ textDecoration: 'none' }}>
         <Logo>42 Sloth</Logo>
       </a>
-      {isMobile && (
+      {/* {isMobile && (
         <a href="/">
           <SignupButton onClick={handleLogin}>login</SignupButton>
         </a>
-      )}
+      )} */}
     </Container>
   );
 };

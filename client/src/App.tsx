@@ -6,6 +6,7 @@ import ChattingList from './Component/chat/ChattingList';
 import Home from './Component/home/Home';
 import GameList from './Component/game/GameList';
 import NotFound from './Component/notfound/NotFound';
+// import ChattingRoom from './Component/chat/ChattingRoom';
 
 const App = () => {
   const isMobile = useMediaQuery({
@@ -23,11 +24,7 @@ const App = () => {
     <BrowserRouter>
       <GlobalNavBar isMobile={isMobile} isTablet={isTablet} isDesktop={isDesktop} />
       <Switch>
-        <Route
-          path="/"
-          exact={true}
-          render={() => <Home isMobile={isMobile} isTablet={isTablet} isDesktop={isDesktop} />}
-        />
+        <Route path="/" exact render={() => <Home isMobile={isMobile} isTablet={isTablet} isDesktop={isDesktop} />} />
         <Route
           path="/game"
           exact
@@ -38,6 +35,11 @@ const App = () => {
           exact
           render={() => <ChattingList isMobile={isMobile} isTablet={isTablet} isDesktop={isDesktop} />}
         />
+        {/* <Route
+          path="/chat/chattingroom"
+          exact
+          render={() => <ChattingRoom isMobile={isMobile} isTablet={isTablet} isDesktop={isDesktop} />}
+        /> */}
         <Route component={NotFound} />
       </Switch>
     </BrowserRouter>
