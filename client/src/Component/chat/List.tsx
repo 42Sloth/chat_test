@@ -1,45 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import ChattingRoom from './ChattingRoom';
 import FriendList from './FriendList';
-// import Chatting from './Chatting';
-
-interface Ch {
-  isMobile: boolean;
-  isTablet: boolean;
-  isDesktop: boolean;
-}
-
-const Tag = styled.div`
-  position: relative;
-  top: 110px;
-`;
-
-const Form = styled.div`
-  /* background-color: #999; */
-  width: 90%;
-  height: auto;
-  max-width: 1060px;
-  max-height: 3000px;
-  position: relative;
-  margin: 0 auto;
-  display: flex;
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* flex-wrap: wrap; */
-  /* @media (min-width: 768px) and (max-width: 1480px) {
-    background-color: #999;
-    width: 73%;
-    height: auto;
-    max-width: 1000px;
-    max-height: 3000px;
-    position: relative;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  } */
-`;
 
 const ChatroomList = styled.div`
   /* background-color: #4580a1; */
@@ -80,52 +41,44 @@ const Box = styled.button`
   align-items: center;
 `;
 
-const ChattingList = ({ isMobile, isTablet, isDesktop }: Ch) => {
-  const [roomData, setRoomData] = useState({
-    owner: '',
-    roomName: '',
-  });
+const List = () => {
+  //   const [roomData, setRoomData] = useState({
+  //     owner: '',
+  //     roomName: '',
+  //   });
 
   const handleJoin = (e: any) => {
     console.log(e.target.name);
     console.log(e.target.id);
   };
-
   return (
-    <Tag>
-      <Form>
-        {(isTablet || isDesktop) && (
-          <div>
-            <ChatroomList>
-              <Head>
-                <div>Chatting</div>
-              </Head>
-              <div style={{ marginTop: '55px' }}>
-                {datas.map((data, idx) => {
-                  return (
-                    <Box key={idx}>
-                      <div style={{ overflow: 'hidden', width: '98px', whiteSpace: 'nowrap' }}>{data.roomName}</div>
-                      <div>
-                        <button
-                          id={data.roomName}
-                          name={data.owner}
-                          onClick={handleJoin}
-                          style={{ border: '0.5px solid #333', borderRadius: '5px' }}
-                        >
-                          Join
-                        </button>
-                      </div>
-                    </Box>
-                  );
-                })}
-              </div>
-            </ChatroomList>
-            <FriendList />
-          </div>
-        )}
-        <ChattingRoom />
-      </Form>
-    </Tag>
+    <div>
+      <ChatroomList>
+        <Head>
+          <div>Chatting</div>
+        </Head>
+        <div style={{ marginTop: '55px' }}>
+          {datas.map((data, idx) => {
+            return (
+              <Box key={idx}>
+                <div style={{ overflow: 'hidden', width: '98px', whiteSpace: 'nowrap' }}>{data.roomName}</div>
+                <div>
+                  <button
+                    id={data.roomName}
+                    name={data.owner}
+                    onClick={handleJoin}
+                    style={{ border: '0.5px solid #333', borderRadius: '5px' }}
+                  >
+                    Join
+                  </button>
+                </div>
+              </Box>
+            );
+          })}
+        </div>
+      </ChatroomList>
+      <FriendList />
+    </div>
   );
 };
 
@@ -366,4 +319,4 @@ const datas = [
   },
 ];
 
-export default ChattingList;
+export default List;

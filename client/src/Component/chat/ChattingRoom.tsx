@@ -92,14 +92,14 @@ const ChattingRoom = () => {
         style={{
           backgroundColor: '#8a56bc',
           width: '100%',
-          height: '900px',
+          height: '65vh',
           overflowY: 'auto',
           border: '2px solid #333',
         }}
       >
         {chatting.map((chat, idx) => {
           return (
-            <div key={idx} style={{ height: '100px' }}>
+            <div key={idx} style={{ height: '30px' }}>
               {chat}
             </div>
           );

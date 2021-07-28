@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import GlobalNavBar from './Component/gnb/GlobalNavBar';
-import ChattingList from './Component/chat/ChattingList';
+import ChattingList from './Component/chat/Chatting';
 import Home from './Component/home/Home';
 import GameList from './Component/game/GameList';
 import NotFound from './Component/notfound/NotFound';
