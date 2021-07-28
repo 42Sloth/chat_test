@@ -6,6 +6,13 @@ import Avatar from '@material-ui/core/Avatar';
 import styled from 'styled-components';
 import Modal from './Modal';
 
+interface SL {
+  isMobile: boolean;
+  login: boolean;
+  handleLogin: () => void;
+  handleLogout: () => void;
+}
+
 const Ul = styled.ul`
   list-style: 'none';
   margin: 0;
@@ -47,13 +54,6 @@ const SignupButton = styled.button`
   line-height: 1;
   cursor: pointer;
 `;
-
-interface SL {
-  isMobile: boolean;
-  login: boolean;
-  handleLogin: () => void;
-  handleLogout: () => void;
-}
 
 const SideList = ({ isMobile, login, handleLogin, handleLogout }: SL) => {
   const [modalOpen, setModalOpen] = useState(false);

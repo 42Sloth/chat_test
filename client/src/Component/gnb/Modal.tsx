@@ -97,17 +97,23 @@ const ATag = styled.ul`
 `;
 
 const Modal = ({ closeModal, login, handleLogin, handleLogout }: Mo) => {
+  const clickLogin = () => {
+    closeModal();
+    handleLogin();
+  };
+
   const clickLogout = () => {
     closeModal();
     handleLogout();
   };
+
   return (
     <div>
       <Container>
         <Main>
           <Head>
             <Icon>
-              <span>wanted</span>
+              <span>42 Sloth</span>
             </Icon>
             <CloseButton>
               <CloseIcon onClick={closeModal} />
@@ -141,12 +147,28 @@ const Modal = ({ closeModal, login, handleLogin, handleLogout }: Mo) => {
                     background: 'none',
                     boxSizing: 'border-box',
                   }}
-                  onClick={handleLogin}
+                  onClick={clickLogin}
                 >
                   로그인
                 </button>
               </li>
             )}
+            <li
+              style={{
+                width: '100%',
+                height: 'auto',
+                margin: '0',
+                border: '0',
+                padding: '0',
+                boxSizing: 'border-box',
+              }}
+            >
+              {login && (
+                <ATag style={{ color: '#999' }} onClick={clickLogout}>
+                  로그아웃
+                </ATag>
+              )}
+            </li>
             <li
               style={{
                 width: '100%',
@@ -247,22 +269,6 @@ const Modal = ({ closeModal, login, handleLogin, handleLogout }: Mo) => {
               }}
             >
               <ATag>기업 서비스</ATag>
-            </li>
-            <li
-              style={{
-                width: '100%',
-                height: 'auto',
-                margin: '0',
-                border: '0',
-                padding: '0',
-                boxSizing: 'border-box',
-              }}
-            >
-              {login && (
-                <ATag style={{ color: '#999' }} onClick={clickLogout}>
-                  로그아웃
-                </ATag>
-              )}
             </li>
           </Ul>
         </Main>

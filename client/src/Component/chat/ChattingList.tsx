@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import ChattingRoom from './ChattingRoom';
 import FriendList from './FriendList';
 // import Chatting from './Chatting';
 
@@ -23,10 +24,11 @@ const Form = styled.div`
   position: relative;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  @media (min-width: 768px) and (max-width: 1480px) {
-    /* background-color: #999; */
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* flex-wrap: wrap; */
+  /* @media (min-width: 768px) and (max-width: 1480px) {
+    background-color: #999;
     width: 73%;
     height: auto;
     max-width: 1000px;
@@ -36,29 +38,101 @@ const Form = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+  } */
+`;
+
+const ChatroomList = styled.div`
+  /* background-color: #4580a1; */
+  height: 40vh;
+  width: 200px;
+  overflow-y: auto;
+  border: 2px solid #333;
+  border-bottom: 1px solid #333;
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  /* justify-content: space-around; */
+`;
+
+const Head = styled.header`
+  text-align: center;
+  align-items: center;
+  width: 200px;
+  height: 50px;
+  margin: 0 auto;
+  position: fixed;
+  background-color: #333;
+  color: #fff;
+  font-weight: 900;
+
+  & > div {
+    margin-top: 16px;
   }
 `;
 
-const ChatRoom = styled.div`
-  background-color: #4580a1;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-`;
-
-const Room = styled.div`
+const Box = styled.button`
   box-sizing: border-box;
   border: 1px solid #333;
-  width: 200px;
-  height: 150px;
-  margin: 20px;
-  padding: 15px;
+  width: 150px;
+  height: 50px;
+  margin: 3px 17px 3px 17px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
 `;
+
+const ChattingList = ({ isMobile, isTablet, isDesktop }: Ch) => {
+  const [roomData, setRoomData] = useState({
+    owner: '',
+    roomName: '',
+  });
+
+  const handleJoin = (e: any) => {
+    console.log(e.target.name);
+    console.log(e.target.id);
+  };
+
+  return (
+    <Tag>
+      <Form>
+        {(isTablet || isDesktop) && (
+          <div>
+            <ChatroomList>
+              <Head>
+                <div>Chatting</div>
+              </Head>
+              <div style={{ marginTop: '55px' }}>
+                {datas.map((data, idx) => {
+                  return (
+                    <Box key={idx}>
+                      <div style={{ overflow: 'hidden', width: '98px', whiteSpace: 'nowrap' }}>{data.roomName}</div>
+                      <div>
+                        <button
+                          id={data.roomName}
+                          name={data.owner}
+                          onClick={handleJoin}
+                          style={{ border: '0.5px solid #333', borderRadius: '5px' }}
+                        >
+                          Join
+                        </button>
+                      </div>
+                    </Box>
+                  );
+                })}
+              </div>
+            </ChatroomList>
+            <FriendList />
+          </div>
+        )}
+        <ChattingRoom />
+      </Form>
+    </Tag>
+  );
+};
 
 const datas = [
   {
     owner: 'yonglee',
-    roomName: 'hello',
+    roomName: 'asdfasd asf sadf asdf sadf as fasdfasdf',
     members: 17,
     maxMembers: 20,
   },
@@ -291,27 +365,5 @@ const datas = [
     maxMembers: 20,
   },
 ];
-
-const ChattingList = ({ isMobile, isTablet, isDesktop }: Ch) => {
-  return (
-    <Tag>
-      <Form>
-        <ChatRoom>
-          {datas.map((data) => {
-            return (
-              <Room>
-                <div>{data.owner}</div>
-                <div>{data.roomName}</div>
-                <div>{`${data.members} / ${data.maxMembers}`}</div>
-                <button>Join</button>
-              </Room>
-            );
-          })}
-        </ChatRoom>
-        {(isTablet || isDesktop) && <FriendList />}
-      </Form>
-    </Tag>
-  );
-};
 
 export default ChattingList;
